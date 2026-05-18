@@ -1,0 +1,45 @@
+name: "GitHub App Authentication"
+description: |
+  Generates a short-lived installation token for a GitHub App.
+  Delegates to actions/create-github-app-token@v1 — no OpenSSL dependency,
+  GitHub-maintained JWT generation. Outputs the token and sets GH_TOKEN +
+  GITHUB_TOKEN for subsequent steps in the calling workflow.
+
+inputs:
+  app-id:
+    description: "GitHub App ID (GNM_APP_ID)"
+    required: true
+  app-installation-id:
+    description: >
+      GitHub App Installation ID (GNM_APP_INSTALLATION_ID).
+      Accepted for interface compatibility — installation is resolved via
+      repo owner. Will be wired to installation-id in a future release.
+    required: false
+    default: ""
+  app-private-key:
+    description: "GitHub App RSA private key (GNM_APP_PRIVATE_KEY)"
+    required: true
+
+outputs:
+  token:
+    description: "Short-lived installation token (valid ~1 hour)"
+    value: ${{ steps.generate.outputs.token }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Generate GitHub App Token
+      id: generate
+      uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547
+      with:
+        app-id: ${{ inputs.app-id }}
+        private-key: ${{ inputs.app-private-key }}
+
+    - name: Export Token to Environment
+      shell: bash
+      env:
+        TOKEN: ${{ steps.generate.outputs.token }}
+      run: |
+        echo "::add-mask::${TOKEN}"
+        echo "GH_TOKEN=${TOKEN}" >> "$GITHUB_ENV"
+        echo "GITHUB_TOKEN=${TOKEN}" >> "$GITHUB_ENV"
