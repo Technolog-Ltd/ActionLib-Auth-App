@@ -1,4 +1,4 @@
-name: "GitHub App Authentication"
+﻿name: "GitHub App Authentication"
 description: |
   Generates a short-lived installation token for a GitHub App.
   Delegates to actions/create-github-app-token@v1 — no OpenSSL dependency,
@@ -7,17 +7,17 @@ description: |
 
 inputs:
   app-id:
-    description: "GitHub App ID (GNM_APP_ID)"
+    description: "GitHub App ID (TPM_APP_ID)"
     required: true
   app-installation-id:
     description: >
-      GitHub App Installation ID (GNM_APP_INSTALLATION_ID).
+      GitHub App Installation ID (TPM_APP_INSTALLATION_ID).
       Accepted for interface compatibility — installation is resolved via
       repo owner. Will be wired to installation-id in a future release.
     required: false
     default: ""
   app-private-key:
-    description: "GitHub App RSA private key (GNM_APP_PRIVATE_KEY)"
+    description: "GitHub App RSA private key (TPM_APP_PRIVATE_KEY)"
     required: true
 
 outputs:

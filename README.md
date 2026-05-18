@@ -11,9 +11,9 @@ dependency, GitHub-maintained JWT generation.
   id: auth
   uses: Technolog-Ltd/ActionLib-Auth-App@v1.0.0
   with:
-    app-id: ${{ secrets.GNM_APP_ID }}
-    app-installation-id: ${{ secrets.GNM_APP_INSTALLATION_ID }}
-    app-private-key: ${{ secrets.GNM_APP_PRIVATE_KEY }}
+    app-id: ${{ secrets.TPM_APP_ID }}
+    app-installation-id: ${{ secrets.TPM_APP_INSTALLATION_ID }}
+    app-private-key: ${{ secrets.TPM_APP_PRIVATE_KEY }}
 
 - name: Checkout (using App token)
   uses: actions/checkout@v4
