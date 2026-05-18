@@ -9,7 +9,7 @@ dependency, GitHub-maintained JWT generation.
 ```yaml
 - name: Authenticate GitHub App
   id: auth
-  uses: Technolog-Ltd/ActionLib-Auth-App@v1.0.0
+  uses: Technolog-Ltd/ActionLib-Auth-App@main
   with:
     app-id: ${{ secrets.TPM_APP_ID }}
     app-installation-id: ${{ secrets.TPM_APP_INSTALLATION_ID }}
