@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: Generate GitHub App Token
         id: app_token
-        uses: Technolog-Ltd/ActionLib-Auth-App@v1.0.0
+        uses: Technolog-Ltd/ActionLib-Auth-App@main
         with:
           app-id: ${{ secrets.TPM_APP_ID }}
           app-installation-id: ${{ secrets.TPM_APP_INSTALLATION_ID }}
@@ -146,7 +146,7 @@ jobs:
     steps:
       - name: Generate GitHub App Token
         id: app_token
-        uses: Technolog-Ltd/ActionLib-Auth-App@v1.0.0
+        uses: Technolog-Ltd/ActionLib-Auth-App@main
         with:
           app-id: ${{ secrets.TPM_APP_ID }}
           app-installation-id: ${{ secrets.TPM_APP_INSTALLATION_ID }}
@@ -162,7 +162,7 @@ jobs:
           echo "RELEASE_VERSION=${RELEASE_VERSION}" >> "$GITHUB_ENV"
 
       - name: Create Package
-        uses: Technolog-Ltd/ActionLib-Create-Package@v1.0.0
+        uses: Technolog-Ltd/ActionLib-Create-Package@main
         env:
           GITHUB_TOKEN: ${{ steps.app_token.outputs.token }}
           RELEASE_VERSION: ${{ needs.detect-release.outputs.release_version }}
@@ -180,13 +180,13 @@ jobs:
     steps:
       - name: Generate GitHub App Token
         id: app_token
-        uses: Technolog-Ltd/ActionLib-Auth-App@v1.0.0
+        uses: Technolog-Ltd/ActionLib-Auth-App@main
         with:
           app-id: ${{ secrets.TPM_APP_ID }}
           app-installation-id: ${{ secrets.TPM_APP_INSTALLATION_ID }}
           app-private-key: ${{ secrets.TPM_APP_PRIVATE_KEY }}
       - name: Create Release
-        uses: Technolog-Ltd/ActionLib-Create-Release@v1.0.0
+        uses: Technolog-Ltd/ActionLib-Create-Release@main
         env:
           GITHUB_TOKEN: ${{ steps.app_token.outputs.token }}
           GH_TOKEN: ${{ steps.app_token.outputs.token }}
