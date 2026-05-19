@@ -51,5 +51,5 @@ environments = {
 }
 
 import_resources = {
-  repository = "ActionLibrary-Auth-App"
+  repository = "ActionLib-Auth-App"
 }
